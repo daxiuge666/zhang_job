@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线购物折扣网站 - 学号6</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #e0f7fa 0%, #f5f5f5 100%);
+            color: #333;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.7);
+            transition: border-color 0.3s;
+        }
+        input:focus, select:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        
+        .urgent-checkbox {
+            display: flex;
+            align-items: center;
+        }
+        .urgent-checkbox input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+            margin-left: 5px;
+        }
+        
+        button {
+            background: linear-gradient(to right, #2c3e50, #3498db);
+            color: white;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            margin-right: 15px;
+            margin-top: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+        .clock {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 10px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(52, 152, 219, 0.2);
+        }
+        #tips {
+            margin-top: 25px;
+            padding: 20px;
+            background: rgba(236, 240, 241, 0.7);
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+        }
+        #tips p {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+        #tips p strong {
+            color: #2c3e50;
+        }
+        #dashboard {
+            margin-top: 35px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        th {
+            background: linear-gradient(to right, #2c3e50, #3498db);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        tr:nth-child(even) {
+            background-color: rgba(236, 240, 241, 0.3);
+        }
+        tr:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            background: linear-gradient(to right, #2c3e50, #3498db);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+        .discount-info {
+            background: rgba(236, 240, 241, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 4px solid #3498db;
+        }
+        .discount-info ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .discount-info li {
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>在线购物折扣网站</h1>
+        
+        <!-- 第一方面：document.write()提醒折扣和加价 -->
+        <script>
+            document.write('<div class="discount-info">');
+            document.write('<h2>💡 当前优惠活动</h2>');
+            document.write('<ul>');
+            document.write('<li>🎉 VIP客户享受 <strong>9折</strong> 优惠</li>');
+            document.write('<li>⚡ 加急发货需额外支付 <strong>10%</strong> 费用</li>');
+            document.write('<li>⏰ 每小时前10分钟再享 <strong>8.5折</strong> 限时优惠！</li>');
+            document.write('</ul>');
+            document.write('</div>');
+        </script>
+        
+        <!-- 第二方面：模拟时钟 -->
+        <div id="clock" class="clock"></div>
+        
+        <script>
+            // 创建模拟时钟
+            function updateClock() {
+                var now = new Date();
+                var year = now.getFullYear();
+                var month = now.getMonth() + 1;
+                var date = now.getDate();
+                var day = now.getDay();
+                var hour = now.getHours();
+                var minute = now.getMinutes();
+                var second = now.getSeconds();
+                
+                var weekDays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+                var timeString = year + '年' + month + '月' + date + '日 ' + weekDays[day] + ' ' + 
+                               hour + '时' + minute + '分' + second + '秒';
+                
+                document.getElementById('clock').innerHTML = timeString;
+                
+                // 检查是否在每小时前10分钟
+                if(minute >= 0 && minute < 10) {
+                    document.getElementById('clock').innerHTML += '<br><span style="color: red;">🎉 当前处于限时折扣时段（8.5折）！</span>';
+                } else {
+                    document.getElementById('clock').innerHTML += '<br><span style="color: green;">⏰ 限时折扣仅在每小时前10分钟开放</span>';
+                }
+            }
+            
+            // 每秒更新一次时钟
+            setInterval(updateClock, 1000);
+            updateClock(); // 立即执行一次
+        </script>
+        
+        <!-- 订单表单 -->
+        <h2>订单录入</h2>
+        <form id="orderForm">
+            <div class="form-group">
+                <label for="customerName">客户名称：</label>
+                <input type="text" id="customerName" name="customerName" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="price">商品单价（元）：</label>
+                <input type="number" id="price" name="price" step="0.01" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="quantity">购买数量：</label>
+                <input type="number" id="quantity" name="quantity" min="1" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="isVip">客户类型：</label>
+                <select id="isVip" name="isVip">
+                    <option value="false">普通客户</option>
+                    <option value="true">VIP客户</option>
+                </select>
+            </div>
+            
+            <div class="form-group urgent-checkbox">
+                <input type="checkbox" id="isUrgent" name="isUrgent" value="true">
+                <label for="isUrgent">是否需要加急发货（+10%费用）</label>
+            </div>
+            
+            <button type="button" onclick="addOrder()">添加订单</button>
+            <button type="button" onclick="showDashboard()">查看销售看板</button>
+        </form>
+        
+        <div id="tips"></div>
+        
+        <!-- 销售看板 -->
+        <div id="dashboard" style="display: none;">
+            <h2>销售历史看板</h2>
+            <div id="dashboardContent"></div>
+        </div>
+    </div>
+    
+    <script>
+        // 全局变量存储历史订单
+        var orderHistory = [];
+        
+        // 第三方面：数据校验函数
+        function validateData(customerName, price, quantity) {
+            // 客户名称不能为空
+            if(customerName === '' || customerName === null) {
+                alert('错误：客户名称不能为空！');
+                return false;
+            }
+            
+            // 商品单价必须是大于0的数字
+            if(isNaN(price) || price <= 0) {
+                alert('错误：商品单价必须是大于0的数字！');
+                return false;
+            }
+            
+            // 数量必须是大于0的整数
+            if(isNaN(quantity) || quantity <= 0 || !Number.isInteger(Number(quantity))) {
+                alert('错误：购买数量必须是大于0的整数！');
+                return false;
+            }
+            
+            return true;
+        }
+        
+        // 第四方面：计算折扣和加价
+        function calculateDiscount(customerName, price, quantity, isVip, isUrgent) {
+            // 转换数据类型
+            price = parseFloat(price);
+            quantity = parseInt(quantity);
+            isVip = (isVip === 'true' || isVip === true);
+            isUrgent = (isUrgent === 'true' || isUrgent === true);
+            
+            // 验证数据
+            if(!validateData(customerName, price, quantity)) {
+                return null;
+            }
+            
+            // 获取当前时间
+            var now = new Date();
+            var minute = now.getMinutes();
+            
+            // ①正常总价
+            var baseTotal = price * quantity;
+            
+            // ②VIP折扣
+            var afterVip = isVip ? baseTotal * 0.9 : baseTotal;
+            
+            // ③加急费用
+            var afterUrgent = isUrgent ? afterVip * 1.1 : afterVip;
+            
+            // ④时间折扣（每小时前10分钟85折）
+            var hitTimeDiscount = (minute >= 0 && minute < 10);
+            var finalTotal = hitTimeDiscount ? afterUrgent * 0.85 : afterUrgent;
+            
+            // ===== 学号末位是6的专属规则 =====
+            // 条件：!isUrgent && quantity >= 2
+            // 效果：finalTotal = finalTotal * 0.98
+            var rule6Applied = false;
+            if(!isUrgent && quantity >= 2) {
+                finalTotal = finalTotal * 0.98;
+                rule6Applied = true;
+            }
+            
+            // 准备显示信息
+            var tipsHtml = '<h3>订单详情</h3>';
+            tipsHtml += '<p><strong>客户名称：</strong>' + customerName + '</p>';
+            tipsHtml += '<p><strong>商品单价：</strong>¥' + price.toFixed(2) + '</p>';
+            tipsHtml += '<p><strong>购买数量：</strong>' + quantity + ' 件</p>';
+            tipsHtml += '<p><strong>客户类型：</strong>' + (isVip ? 'VIP客户' : '普通客户') + '</p>';
+            tipsHtml += '<p><strong>加急发货：</strong>' + (isUrgent ? '是' : '否') + '</p>';
+            tipsHtml += '<hr>';
+            tipsHtml += '<p><strong>基础总价：</strong>¥' + baseTotal.toFixed(2) + '</p>';
+            
+            if(isVip) {
+                tipsHtml += '<p><strong>VIP折扣后：</strong>¥' + afterVip.toFixed(2) + ' (9折)</p>';
+            }
+            
+            if(isUrgent) {
+                tipsHtml += '<p><strong>加急费用后：</strong>¥' + afterUrgent.toFixed(2) + ' (+10%)</p>';
+            }
+            
+            if(hitTimeDiscount) {
+                tipsHtml += '<p><strong>限时折扣后：</strong>¥' + finalTotal.toFixed(2) + ' (8.5折)</p>';
+            }
+            
+            if(rule6Applied) {
+                tipsHtml += '<p><strong>学号末位6优惠：</strong>¥' + finalTotal.toFixed(2) + ' (无加急且≥2件，98折)</p>';
+            }
+            
+            tipsHtml += '<hr>';
+            tipsHtml += '<p style="color: red; font-size: 18px;"><strong>最终应付金额：¥' + finalTotal.toFixed(2) + '</strong></p>';
+            
+            // 显示结果
+            document.getElementById('tips').innerHTML = tipsHtml;
+            
+            // 创建订单对象并存入数组
+            var order = {
+                customerName: customerName,
+                price: price,
+                quantity: quantity,
+                isVip: isVip,
+                isUrgent: isUrgent,
+                baseTotal: baseTotal,
+                finalTotal: finalTotal,
+                orderTime: new Date().toLocaleString()
+            };
+            
+            orderHistory.push(order);
+            
+            // 使用push()方法显示在数组中
+            var orderArray = [];
+            orderArray.push('订单数量：' + orderHistory.length + ' 笔');
+            orderArray.push('当前订单：' + customerName + ' - ¥' + finalTotal.toFixed(2));
+            
+            console.log('订单数组内容：', orderArray);
+            
+            return order;
+        }
+        
+        // 添加订单函数
+        function addOrder() {
+            // 获取表单数据
+            var customerName = document.getElementById('customerName').value;
+            var price = document.getElementById('price').value;
+            var quantity = document.getElementById('quantity').value;
+            var isVip = document.getElementById('isVip').value;
+            var isUrgent = document.getElementById('isUrgent').checked;
+            
+            // 计算折扣
+            calculateDiscount(customerName, price, quantity, isVip, isUrgent);
+            
+            // 清空表单（保留部分字段）
+            document.getElementById('orderForm').reset();
+        }
+        
+        // 第五方面：显示销售看板
+        function showDashboard() {
+            var dashboard = document.getElementById('dashboard');
+            var content = document.getElementById('dashboardContent');
+            
+            if(orderHistory.length === 0) {
+                content.innerHTML = '<p style="color: red;">暂无订单数据</p>';
+            } else {
+                // 计算统计数据
+                var totalAmount = 0;
+                var totalQuantity = 0;
+                var vipCount = 0;
+                var urgentCount = 0;
+                
+                for(var i = 0; i < orderHistory.length; i++) {
+                    totalAmount += orderHistory[i].finalTotal;
+                    totalQuantity += orderHistory[i].quantity;
+                    if(orderHistory[i].isVip) vipCount++;
+                    if(orderHistory[i].isUrgent) urgentCount++;
+                }
+                
+                // 显示统计信息
+                var html = '<div style="margin-bottom: 20px; padding: 10px; background: #e8f4f8; border-radius: 5px;">';
+                html += '<h3>销售统计</h3>';
+                html += '<p><strong>总订单数：</strong>' + orderHistory.length + ' 笔</p>';
+                html += '<p><strong>总销售额：</strong>¥' + totalAmount.toFixed(2) + '</p>';
+                html += '<p><strong>总销售量：</strong>' + totalQuantity + ' 件</p>';
+                html += '<p><strong>VIP客户数：</strong>' + vipCount + ' 人</p>';
+                html += '<p><strong>加急订单数：</strong>' + urgentCount + ' 笔</p>';
+                html += '</div>';
+                
+                // 显示订单表格
+                html += '<table>';
+                html += '<tr><th>订单时间</th><th>客户名称</th><th>单价</th><th>数量</th><th>VIP</th><th>加急</th><th>原价</th><th>实付</th></tr>';
+                
+                for(var i = 0; i < orderHistory.length; i++) {
+                    var order = orderHistory[i];
+                    html += '<tr>';
+                    html += '<td>' + order.orderTime + '</td>';
+                    html += '<td>' + order.customerName + '</td>';
+                    html += '<td>¥' + order.price.toFixed(2) + '</td>';
+                    html += '<td>' + order.quantity + '</td>';
+                    html += '<td>' + (order.isVip ? '是' : '否') + '</td>';
+                    html += '<td>' + (order.isUrgent ? '是' : '否') + '</td>';
+                    html += '<td>¥' + order.baseTotal.toFixed(2) + '</td>';
+                    html += '<td>¥' + order.finalTotal.toFixed(2) + '</td>';
+                    html += '</tr>';
+                }
+                
+                html += '</table>';
+                content.innerHTML = html;
+            }
+            
+            dashboard.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
